@@ -1,0 +1,70 @@
+#include<stdio.h>
+#define max 100 // Maximum size of the stack
+
+int stack[max];
+int top = -1; // Pointer for locating the element at the top
+int ch, number;
+
+void push(int number) {
+    if (top == max - 1) {
+        printf("Stack is overflow, cannot push.\n");
+    } else {
+        top++;
+        stack[top] = number;
+        printf("%d pushed onto the stack.\n", number);
+    }
+}
+
+void pop() {
+    if (top == -1) {
+        printf("\nStack underflow, cannot pop.\n");
+    } else {
+        printf("%d is popped from the stack.\n", stack[top]);
+        top--;  // Decrement after printing the value
+    }
+}
+
+void print() {
+    if (top == -1) {
+        printf("\nStack is empty.\n");
+    } else {
+        printf("\nStack elements are: ");
+        for (int i = top; i >= 0; i--) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    while (1) {
+        printf("\nOperations on the stack:\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Print\n");
+        printf("4. Exit\n");
+        printf("Enter the number of your choice: ");
+        scanf("%d", &ch);
+
+        switch (ch) {
+            case 1:
+                printf("Enter the value to push: ");
+                scanf("%d", &number);
+                push(number);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                print();
+                break;
+            case 4:
+                printf("\nExiting program.\n");
+                return 0;
+            default:
+                printf("\nThe choice is not valid, try again.\n");
+        }
+    }
+
+    return 0;
+}
